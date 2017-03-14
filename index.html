@@ -21,8 +21,8 @@
     <script src="appname.service.js" type="application/javascript"></script>
     <script src="appConfig.service.js" type="application/javascript"></script>
 
-    <script src="productTypeDataService.js" type="application/javascript"></script>
-    <script src="productDataService.js" type="application/javascript"></script>
+    <script src="services/productTypeDataService.js" type="application/javascript"></script>
+    <script src="services/productDataService.js" type="application/javascript"></script>
     <script src="productController.js" type="application/javascript"></script>
 
 
@@ -39,6 +39,7 @@
 
             </ul>
             <button>Add Product</button>
+            <button>Save new Product</button>
         </div>
         <div class="col-md-6">
             <div class="alert alert-success" ng-if="c.succesMsg">{{c.succesMsg}}
@@ -53,9 +54,21 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">{{c.selectedElement.name}}</h4>
+
 
                     <div>
+                        <p>
+                            <h4 class="media-heading">
+                            <span>
+                               Name:
+                            </span>
+                             <span ng-hide="c.editMode">
+                                 {{c.selectedElement.name}}
+                            </span>
+                            </h4>
+                            <input ng-show="c.editMode" type="text" ng-model="c.selectedElement.name" />
+                        </p>
+
                         <p>
                             <span>Price: </span>
                             <span ng-hide="c.editMode">{{c.selectedElement.price}}</span>
