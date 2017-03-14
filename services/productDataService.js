@@ -22,13 +22,49 @@
 
          };
 
+         self.addNewProduct = function (product) {
+             var url = "http://localhost:7080/MagApi/webapi/produse";
+
+             console.log("Here:" + product);
+
+             var body = {
+                 'name': product.name,
+                 'productTypeName': product.nameProductType.nameProductType,
+                 'price': product.price,
+                 'numberOfItems': product.numberOfItems,
+                 'linkImg': product.linkImg
+             }
+
+             console.log(body);
+             var rez = $http.post(url, body).then(function (response) {
+                 console.log(response);
+                 return response;
+             });
+
+             return rez;
+         };
+
+         self.deleteProduct = function (product) {
+             var url = "http://localhost:7080/MagApi/webapi/produse/" + product.idLocal;
+
+
+             var rez = $http.delete(url).then(function (response) {
+                 console.log(response);
+                 return response;
+
+             });
+
+             return rez;
+         };
+
+
          self.saveProduct = function (product) {
 
              var url = "http://localhost:7080/MagApi/webapi/produse/" + product.idLocal;
 
              var body = {
                  'name': product.name,
-                 'productTypeName': product.nameProductType,
+                 'productTypeName': product.nameProductType.nameProductType,
                  'price': product.price,
                  'numberOfItems': product.numberOfItems,
                  'linkImg': product.linkImg
