@@ -1,20 +1,26 @@
  (function () {
 
-     var module = angular.module("contactApp");
+     var module = angular.module("contactApp", ['productService', 'productTypeService']);
 
 
 
      module.controller("Controller", mainFuntion);
 
-     function mainFuntion(productDataSvc) {
+     function mainFuntion(ProductDataSvc, ProductTypeDataSvc) {
 
          var self = this;
          self.editMode = false;
 
-         productDataSvc.getProducts().then(function (data) {
+         ProductDataSvc.getProducts().then(function (data) {
              self.products = data;
 
          });
+
+
+         ProductTypeDataSvc.getAllProductTypes().then(function (data) {
+             console.log(data);
+         });
+
 
          this.selectProduct = function (index) {
              this.selectedElement = this.products[index];
@@ -35,7 +41,7 @@
              var productTemp = this.selectedElement;
              var self = this;
 
-             productDataSvc.saveProduct(productTemp).then(function () {
+             ProductDataSvc.saveProduct(productTemp).then(function () {
                      self.succesMsg = "Data update succesfull";
                  },
                  function () {

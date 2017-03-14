@@ -13,11 +13,15 @@
 
     <!-- angular local-->
     <script type="application/javascript" src="angular.js"></script>
+
+    <!-- app script -->
     <script type="application/javascript" src="app.js"></script>
 
 
     <script src="appname.service.js" type="application/javascript"></script>
     <script src="appConfig.service.js" type="application/javascript"></script>
+
+    <script src="productTypeDataService.js" type="application/javascript"></script>
     <script src="productDataService.js" type="application/javascript"></script>
     <script src="productController.js" type="application/javascript"></script>
 
@@ -25,17 +29,16 @@
 </head>
 
 <body>
-    <h1>My Products app</h1>
-
-
 
     <div class="container" ng-controller="Controller as c">
+        <h1>My online shop app admin page</h1>
         <div class="col-md-6">
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="i in c.products" ng-click="c.selectProduct($index)"><span>{{i.name}}</span></li>
 
 
             </ul>
+            <button>Add Product</button>
         </div>
         <div class="col-md-6">
             <div class="alert alert-success" ng-if="c.succesMsg">{{c.succesMsg}}
