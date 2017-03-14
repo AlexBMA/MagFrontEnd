@@ -1,1 +1,1 @@
-# MagFrontEnd
+# MagFrontEnd with Angular js
