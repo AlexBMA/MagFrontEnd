@@ -20,7 +20,14 @@
 
 
          ProductTypeDataSvc.getAllProductTypes().then(function (data) {
-             self.allProductTypes = data;
+
+             var allProductTypes = [];
+             for (var i in data) {
+                 allProductTypes.push(data[i].nameProductType);
+             }
+             console.log(allProductTypes);
+             self.allProductTypes = allProductTypes;
+
          });
 
 
@@ -43,8 +50,9 @@
              var productTemp = this.selectedElement;
              var self = this;
 
+
              if (this.addMode == false) {
-                 console.log("in put")
+
                  ProductDataSvc.saveProduct(productTemp).then(function () {
                          self.succesMsg = "Data update succesfull";
                      },

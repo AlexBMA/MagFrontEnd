@@ -29,7 +29,7 @@
 
              var body = {
                  'name': product.name,
-                 'productTypeName': product.nameProductType.nameProductType,
+                 'productTypeName': product.nameProductType,
                  'price': product.price,
                  'numberOfItems': product.numberOfItems,
                  'linkImg': product.linkImg
@@ -62,9 +62,11 @@
 
              var url = "http://localhost:7080/MagApi/webapi/produse/" + product.idLocal;
 
+             console.log("p in put method:" + product.nameProductType);
+
              var body = {
                  'name': product.name,
-                 'productTypeName': product.nameProductType.nameProductType,
+                 'productTypeName': product.nameProductType,
                  'price': product.price,
                  'numberOfItems': product.numberOfItems,
                  'linkImg': product.linkImg

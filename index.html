@@ -83,10 +83,9 @@
                             <span>Game Type: </span>
                             <span ng-hide="c.editMode">{{c.selectedElement.nameProductType}}</span>
 
-                            <!--  <select  id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>-->
 
-                            <select ng-show="c.editMode" ng-options="j.nameProductType for j in c.allProductTypes track by j.idLocal" ng-model="c.selectedElement.nameProductType">
-                                <option>{{j.nameProductType}}</option>
+                            <select ng-show="c.editMode" ng-options="j for j in c.allProductTypes" ng-model="c.selectedElement.nameProductType">
+                                <option>{{c.allProductTypes[j]}}</option>
                             </select>
 
                         </p>
