@@ -1,16 +1,21 @@
  (function () {
 
-     var module = angular.module("contactApp", ['productService', 'productTypeService']);
+     var module = angular.module("contactApp", ['productService', 'productTypeService','cartService']);
 
 
 
      module.controller("Controller", mainFuntion);
 
-     function mainFuntion(ProductDataSvc, ProductTypeDataSvc) {
+     function mainFuntion(ProductDataSvc, ProductTypeDataSvc,CartSvc) {
 
          var self = this;
          self.editMode = false;
          self.addMode = false;
+
+         var cart ={
+             "totalPriceOfCart":0,
+             "listProductInCartFromClient":[]
+         };
 
 
          ProductDataSvc.getProducts().then(function (data) {
@@ -93,6 +98,37 @@
              }, function () {
                  self.erorMsg = "There was an eror please try again";
              });
+
+         };
+
+         this.addInCart = function()
+         {
+             console.log(this.quantity);
+             console.log(this.selectedElement.price);
+
+             var cost = this.quantity * this.selectedElement.price;
+
+             var productFromCartClient ={
+                 "quantity":this.quantity,
+                 "idLocal":this.selectedElement.idLocal
+             };
+
+             cart.listProductInCartFromClient.push(productFromCartClient);
+
+
+             cart.totalPriceOfCart = cart.totalPriceOfCart + cost;
+
+
+             self.succesMsg = "Product added in cart";
+
+             console.log(cart);
+
+         };
+
+         this.checkOut = function()
+         {
+             CartSvc.saveCart(cart);
+             console.log("##");
 
          };
      }

@@ -1,0 +1,112 @@
+<!Doctype html>
+<html ng-app="contactApp">
+
+<head>
+    <title>My Products app</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <!-- angular local-->
+    <script type="application/javascript" src="angular.js"></script>
+
+    <!-- app script -->
+    <script type="application/javascript" src="app.js"></script>
+
+
+    <script src="appname.service.js" type="application/javascript"></script>
+    <script src="appConfig.service.js" type="application/javascript"></script>
+
+    <script src="services/cartService.js" type="application/javascript"></script>
+    <script src="services/productTypeDataService.js" type="application/javascript"></script>
+    <script src="services/productDataService.js" type="application/javascript"></script>
+    <script src="controller/productController.js" type="application/javascript"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container" ng-controller="Controller as c">
+        <h1>My online shop app client page</h1>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="i in c.products" ng-click="c.selectProduct($index)"><span>{{i.name}}</span>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-success" ng-if="c.succesMsg">{{c.succesMsg}}
+            </div>
+            <div class="alert alert-danger" ng-if="c.erorMsg">{{c.erorMsg}}
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img ng-src="{{c.selectedElement.linkImg}}"></img>
+                    </a>
+                </div>
+                <div class="media-body">
+
+
+                    <div>
+                        <p>
+                            <h4 class="media-heading">
+                                <span>
+                               Name:
+                            </span>
+                                <span>
+                                 {{c.selectedElement.name}}
+                            </span>
+                            </h4>
+
+                        </p>
+
+                        <p>
+                            <span>Price: </span>
+                            <span>{{c.selectedElement.price}}</span>
+                        </p>
+
+                        <p>
+                            <span>Game Type: </span>
+                            <span>{{c.selectedElement.nameProductType}}</span>
+                        </p>
+                        <p>
+                            <span>
+                                Number of items:
+                            </span>
+                            <input type="number" min="1" max="{{c.selectedElement.numberOfItems}}" ng-model="c.quantity"/>
+                        </p>
+                        <p>
+                            <span>
+                                Cost of product:
+                            </span>
+                            <span >{{c.quantity * c.selectedElement.price}}</span>
+
+                        </p>
+                        <p>
+                            <button ng-click="c.addInCart()">Add to cart</button>
+                        </p>
+
+                        <p>
+                            <button ng-click="c.checkOut()">Pay cart</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
