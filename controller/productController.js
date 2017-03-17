@@ -1,12 +1,12 @@
  (function () {
 
-     var module = angular.module("contactApp", ['productService', 'productTypeService','cartService']);
+     var module = angular.module("contactApp", ['productService', 'productTypeService']);
 
 
 
      module.controller("Controller", mainFuntion);
 
-     function mainFuntion(ProductDataSvc, ProductTypeDataSvc,CartSvc) {
+     function mainFuntion(ProductDataSvc, ProductTypeDataSvc) {
 
          var self = this;
          self.editMode = false;
@@ -101,36 +101,7 @@
 
          };
 
-         this.addInCart = function()
-         {
-             console.log(this.quantity);
-             console.log(this.selectedElement.price);
 
-             var cost = this.quantity * this.selectedElement.price;
-
-             var productFromCartClient ={
-                 "quantity":this.quantity,
-                 "idLocal":this.selectedElement.idLocal
-             };
-
-             cart.listProductInCartFromClient.push(productFromCartClient);
-
-
-             cart.totalPriceOfCart = cart.totalPriceOfCart + cost;
-
-
-             self.succesMsg = "Product added in cart";
-
-             console.log(cart);
-
-         };
-
-         this.checkOut = function()
-         {
-             CartSvc.saveCart(cart);
-             console.log("##");
-
-         };
      }
 
  })();
