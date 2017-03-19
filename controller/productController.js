@@ -38,6 +38,7 @@
 
          this.selectProduct = function (index) {
              this.selectedElement = this.products[index];
+             this.toggleEditMode();
              this.succesMsg = undefined;
              this.erorMsg = undefined;
 
@@ -46,7 +47,7 @@
 
          this.toggleEditMode = function () {
              if (this.editMode == false) this.editMode = true;
-             else this.editMode = false;
+                else this.editMode = false;
          }
 
          this.saveEdit = function () {

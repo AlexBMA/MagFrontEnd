@@ -75,7 +75,7 @@
                         </p>
                         <p>
                             <span>Number of items: </span>
-                            <span ng-hide="c.editMode">{{c.selectedElement.numberOfItems}}</span>
+                            <span ng-hide="c.editMode" ng-click="c.toggleEditMode()">{{c.selectedElement.numberOfItems}}</span>
                             <input ng-show="c.editMode" type="number" ng-model="c.selectedElement.numberOfItems" min="0" />
                         </p>
                         <p>

@@ -8,7 +8,7 @@
 
          var self = this;
          self.editMode = false;
-         self.addMode = false;
+
 
          var cart = [];
          cart = JSON.parse(localStorage.getItem("cart"));
@@ -20,11 +20,6 @@
          console.log(productInCartComplete);
 
 
-         for( var i in productInCartComplete)
-             {
-                 console.log(productInCartComplete[i]);
-             }
-
          this.products =productInCartComplete;
 
          this.selectProduct = function (index) {
@@ -33,6 +28,11 @@
              this.erorMsg = undefined;
 
          };
+
+         this.toggleEditMode = function () {
+             if (this.editMode == false) this.editMode = true;
+             else this.editMode = false;
+         }
 
 
         /* ProductDataSvc.getProducts().then(function (data) {
@@ -54,10 +54,6 @@
          */
 
 
-         this.getCos = function()
-         {
-
-         };
 
 
          this.checkOut = function()
