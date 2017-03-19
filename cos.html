@@ -33,7 +33,7 @@
 <body>
 
     <div class="container" ng-controller="ControllerCos as c">
-        <h1>Cast client </h1>
+        <h1>Cast client total cost is {{c.totalPriceOfCart}}</h1>
         <div class="col-md-6">
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="i in c.products" ng-click="c.selectProduct($index)"><span>{{i.name}}</span></li>
@@ -70,13 +70,13 @@
 
                         <p>
                             <span>Price: </span>
-                            <span >{{c.selectedElement.price}}</span>
+                            <span >{{c.selectedElement.price * c.selectedElement.quantityInCart}}</span>
 
                         </p>
                         <p>
                             <span>Number of items: </span>
-                            <span ng-hide="c.editMode" ng-click="c.toggleEditMode()">{{c.selectedElement.numberOfItems}}</span>
-                            <input ng-show="c.editMode" type="number" ng-model="c.selectedElement.numberOfItems" min="0" />
+                            <span ng-hide="c.editMode" ng-click="c.toggleEditMode()">{{c.selectedElement.quantityInCart}}</span>
+                            <input ng-show="c.editMode" type="number" ng-model="c.selectedElement.quantityInCart" min="1"  max="{{c.selectedElement.numberOfItems}}"/>
                         </p>
                         <p>
                             <span>Game Type: </span>
@@ -87,7 +87,10 @@
                         <p>
                             <button ng-hide="c.editMode" ng-click="c.toggleEditMode()">Edit</button>
                             <button ng-show="c.editMode" ng-click="c.saveEdit()">Save quanty</button>
-                            <button ng-click="c.deleteProduct()">Delete from cart</button>
+                            <button ng-click="c.deleteFromCart()">Delete from cart</button>
+                          </p>
+                     <p>
+                            <button ng-click="c.goToClientPage()">Go back to product page</button>
                             <button ng-click="c.chekout()">Pay</button>
                     </p>
 

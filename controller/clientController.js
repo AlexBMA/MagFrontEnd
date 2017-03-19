@@ -12,12 +12,30 @@
          self.editMode = false;
          self.addMode = false;
 
-         var cart ={
-             "totalPriceOfCart":0,
-             "listProductInCartFromClient":[]
-         };
+         var cart;
+         var productInCartComplete;
 
-         var productInCartComplete = [];
+                cart ={
+                      "totalPriceOfCart":0,
+                      "listProductInCartFromClient":[]
+                 };
+              productInCartComplete = [];
+
+        /*
+         if(localStorage.getItem("cart")==null)
+         {
+             console.log("here ");
+                cart ={
+                      "totalPriceOfCart":0,
+                      "listProductInCartFromClient":[]
+                 };
+              productInCartComplete = [];
+
+        }else{
+            cart = JSON.parse(localStorage.getItem("cart"));
+            productInCartComplete = cart.listProductInCartFromClient;
+        }
+         */
 
 
          ProductDataSvc.getProducts().then(function (data) {
