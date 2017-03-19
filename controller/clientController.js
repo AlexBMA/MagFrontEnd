@@ -17,6 +17,8 @@
              "listProductInCartFromClient":[]
          };
 
+         var productInCartComplete = [];
+
 
          ProductDataSvc.getProducts().then(function (data) {
              self.products = data;
@@ -73,9 +75,10 @@
              else {
                  cost = this.quantity * this.selectedElement.price;
                   var productFromCartClient ={
-                 "quantity":this.quantity,
-                 "idLocal":this.selectedElement.idLocal
+                    "quantity":this.quantity,
+                    "idLocal":this.selectedElement.idLocal
                   };
+             productInCartComplete.push(this.selectedElement);
              cart.listProductInCartFromClient.push(productFromCartClient);
              }
 
@@ -84,15 +87,28 @@
 
              self.succesMsg = "Product added in cart";
              console.log(cart);
+             console.log(productInCartComplete);
 
          };
 
          this.checkOut = function()
          {
-             CartSvc.saveCart(cart);
-             self.succesMsg = "Cart has been register cart";
-             console.log("##");
+             var jsonCart = JSON.stringify(cart)
+             localStorage.setItem("cart",jsonCart);
+             var jsonDetails = JSON.stringify(productInCartComplete);
+             localStorage.setItem("productDetailsInCart",jsonDetails);
 
+             /*
+                console.log(jsonCart);
+                console.log(jsonDetails);
+             */
+
+             window.open("cos.html","_self");
+
+             /*  CartSvc.saveCart(cart);
+                 self.succesMsg = "Cart has been register cart";
+                 console.log("##");
+             */
          };
      }
 
